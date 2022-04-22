@@ -1,0 +1,26 @@
+@import '../components/Header.module.scss';
+
+.page {
+    position: relative;
+}
+
+.header__links {
+    @extend .header__links;
+
+    display: none;
+}
+
+.brand__container {
+    display: flex;
+
+    width: 93vw;
+
+    margin: 0 auto;
+}
+
+.brand__container_title {
+    width: rem(1441px);
+    height: rem(184px);
+
+    margin: 0 auto;
+}
