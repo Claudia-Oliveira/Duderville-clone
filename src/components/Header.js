@@ -138,7 +138,7 @@ export default class Header extends Component {
                     )}
 
                     {pathname === '/' ? (
-                        <span className={styles.header__desktop_copy_place}>Based in MALMÖ, Sweden</span>
+                        <span className={styles.header__desktop_copy_place}>Based in Malmö, Sweden</span>
                     ) : (
                         <ul className={`${styles.list} ${styles.header__links} `}>
                             {t('header:navigation', { returnObjects: true }).map((item) => {
