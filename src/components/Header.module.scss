@@ -54,6 +54,14 @@
     }
 }
 
+.button_charcoal {
+    color: $color-dark-charcoal;
+
+    &:visited {
+        color: $color-dark-charcoal;
+    }
+}
+
 .header__mobile_logo_feathers {
     width: rem(32px);
     height: rem(47px);

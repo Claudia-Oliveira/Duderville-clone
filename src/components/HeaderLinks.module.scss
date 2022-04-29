@@ -1,0 +1,23 @@
+@import 'styles/partials/lists';
+
+.header__links {
+    @extend .list;
+
+    display: flex;
+
+    width: fit-content;
+    height: rem(54px);
+
+    border-top: 1px solid $color-dark-charcoal;
+    border-bottom: 1px solid $color-dark-charcoal;
+
+    font-family: $font-plaak;
+
+    text-transform: uppercase;
+
+    color: $color-black;
+
+    gap: rem(109px);
+    align-items: center;
+    justify-content: flex-end;
+}

@@ -3,7 +3,8 @@ import styles from './Header.module.scss';
 
 import React, { Component } from 'react';
 import Button from './Button';
-import ActiveLink from './ActiveLink';
+
+import HeaderLinks from './HeaderLinks';
 
 import { resizeManager } from '@superherocheesecake/next-resize-manager';
 
@@ -20,6 +21,7 @@ export default class Header extends Component {
     render() {
         const { t } = this.props;
         let pathname = this.props.router.pathname;
+        console.log(t('header', { returnObjects: true }));
 
         return (
             <nav className={styles.header}>
@@ -36,7 +38,7 @@ export default class Header extends Component {
                                 />
                             </svg>
                         </Button>
-                        <span className={styles.header__mobile_copy}>The chronicles of Duderville, Sweden</span>
+                        <span className={styles.header__mobile_copy}>{t('header:mobile__copy')}</span>
                     </div>
                     <Button className={styles.header__menu_button}>
                         <svg className={styles.header__menu_button_icon} viewBox="0 0 29 20">
@@ -46,7 +48,7 @@ export default class Header extends Component {
                 </div>
 
                 <div className={`${styles.header__desktop} ${styles.header__is_wide}`}>
-                    <span className={styles.header__desktop_copy}>The chronicles of a creative studio</span>
+                    <span className={styles.header__desktop_copy}>{t('header:desktop__copy')}</span>
                     {pathname === '/' ? (
                         <svg className={styles.header__logo_bird} viewBox="0 0 46.46 79.59">
                             <path
@@ -137,21 +139,7 @@ export default class Header extends Component {
                         </Button>
                     )}
 
-                    {pathname === '/' ? (
-                        <span className={styles.header__desktop_copy_place}>Based in Malmö, Sweden</span>
-                    ) : (
-                        <ul className={`${styles.list} ${styles.header__links} `}>
-                            {t('header:navigation', { returnObjects: true }).map((item) => {
-                                return (
-                                    <li key={item.button.copy} className={`${styles.item} ${styles.header__button_page}`}>
-                                        <ActiveLink href={item.button.href} style={{ color: '#000000' }}>
-                                            {item.button.copy}
-                                        </ActiveLink>
-                                    </li>
-                                );
-                            })}
-                        </ul>
-                    )}
+                    {pathname === '/' ? <span className={styles.header__desktop_copy_place}>{t('header:desktop__copy_place')}</span> : <HeaderLinks t={t} pathname={this.props.router.pathname} />}
                 </div>
             </nav>
         );

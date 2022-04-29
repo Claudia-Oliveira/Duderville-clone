@@ -22,7 +22,7 @@ export function reportWebVitals(props) {
 
 class Application extends React.Component {
     render() {
-        const { Component, t, pageProps, router } = this.props;
+        const { Component, t, pageProps, router, children } = this.props;
 
         return (
             <>
@@ -33,10 +33,12 @@ class Application extends React.Component {
 
                 <SafariCacheFix />
 
-                <Header t={t} router={router}></Header>
+                <Header t={t} router={router}>
+                    {children}
+                </Header>
 
                 <Transition fragment={router.pathname}>
-                    <Component {...pageProps} />
+                    <Component t={t} {...pageProps} router={router} />
                 </Transition>
 
                 <Footer t={t}></Footer>

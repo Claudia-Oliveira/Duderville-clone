@@ -1,4 +1,38 @@
 {
     "meta__title": "Duderville",
-    "heading": "Duderville"
+    "heading": "Duderville",
+    "studio__title": "I. The Studio",
+    "slogan__word_a": "a",
+    "slogan__words": "creative motion",
+    "slogan__word_studio": "studio",
+    "slogan__word_in": "in",
+    "slogan__word_city": "Malmö,",
+    "slogan__word_country": "Sweden.",
+    "studio__button": "Read all about it",
+    "cases__title": "II. Casestudies",
+    "navigation": [
+        {
+            "button": {
+                "number": "II.I",
+                "copy": "Brio toys",
+                "href": "/the-work/brio-toys"
+            }
+        },
+        {
+            "button": {
+                "number": "II.II",
+                "copy": "tetra pak ",
+                "href": "/the-work/tetra-pak"
+            }
+        },
+        {
+            "button": {
+                "number": "II.III",
+                "copy": "meca",
+                "href": "/the-work/tetra-pak-services"
+            }
+        }
+    ],
+    "button__more_work": "more work",
+    "button__more_work_number": ""
 }
