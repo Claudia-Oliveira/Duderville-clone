@@ -1,36 +1,4 @@
 {
-    "navigation": [
-        {
-            "button": {
-                "copy": "",
-                "href": "/"
-            }
-        },
-        {
-            "button": {
-                "copy": "I. Studio",
-                "href": "/studio"
-            }
-        },
-        {
-            "button": {
-                "copy": "II. The Work",
-                "href": "/the-work"
-            }
-        },
-        {
-            "button": {
-                "copy": "III. Process",
-                "href": "/process"
-            }
-        },
-        {
-            "button": {
-                "copy": "IV. Contact",
-                "href": "/contact"
-            }
-        }
-    ],
     "mobile__copy": "The chronicles of Duderville, Sweden",
     "desktop__copy": "The chronicles of a creative studio",
     "desktop__copy_place": "Based in Malmö, Sweden"

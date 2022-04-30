@@ -2,12 +2,6 @@
     "navigation": [
         {
             "button": {
-                "copy": "",
-                "href": "/"
-            }
-        },
-        {
-            "button": {
                 "copy": "I. Studio",
                 "href": "/studio"
             }

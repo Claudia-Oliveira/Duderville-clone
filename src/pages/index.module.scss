@@ -39,8 +39,11 @@
 }
 
 .home__hero_container {
-    width: rem(1441px);
-    height: rem(184px);
+    position: relative;
+    left: rem(-150px);
+
+    width: rem(1445px);
+    height: rem(145px);
 
     margin: 0 auto;
     margin-bottom: rem(44px);
@@ -58,77 +61,6 @@
     height: rem(700px);
 
     margin-bottom: rem(68px);
-}
-
-.home__pages_title {
-    display: block;
-
-    margin: 0 auto;
-    margin-bottom: rem(61px);
-
-    font-family: $font-plaak;
-    font-size: rem(20px);
-    font-weight: 300;
-    letter-spacing: rem(10px);
-
-    text-align: center;
-    text-transform: uppercase;
-
-    color: $color-dark-charcoal;
-}
-
-.home__slogan {
-    position: relative;
-    display: flex;
-
-    flex-direction: column;
-
-    margin: 0 auto;
-    margin-bottom: rem(75px);
-
-    font-family: $font-plaak-bold;
-    font-size: rem(110px);
-    font-weight: 300;
-    letter-spacing: rem(2px);
-    line-height: rem(100px);
-
-    text-align: center;
-    text-transform: uppercase;
-
-    color: $color-dark-charcoal;
-
-    align-items: center;
-}
-
-.home__slogan_text {
-    position: relative;
-    display: flex;
-
-    flex-direction: row;
-}
-.home__slogan_word_wrapper {
-    position: relative;
-
-    margin-right: rem(50px);
-    margin-bottom: rem(20px);
-}
-
-.home__slogan_word_wrapper:last-of-type {
-    margin-left: rem(15px);
-}
-
-.home__slogan_decoration {
-    position: absolute;
-    bottom: -7px;
-
-    font-size: rem(75px);
-
-    vertical-align: text-top;
-    text-decoration: underline;
-}
-
-.home__slogan_words {
-    position: relative;
 }
 
 .home__cases {
@@ -277,4 +209,8 @@
     width: rem(16px);
 
     margin-left: rem(40px);
+}
+
+.home__navigation_bar {
+    display: none;
 }

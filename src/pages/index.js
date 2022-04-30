@@ -4,6 +4,7 @@ import styles from './index.module.scss';
 import Button from 'components/Button';
 import HeaderLinks from 'components/HeaderLinks';
 import { withTranslation, getTranslation } from 'utils/translations/i18n';
+import SectionStudio from 'components/SectionStudio';
 
 class Home extends Component {
     render() {
@@ -18,7 +19,6 @@ class Home extends Component {
 
                 <div className={styles.page__home}>
                     <h1 className={styles.home__hero_container}>
-                        {/* add area-label */}
                         <svg className={styles.home__hero_container_title} viewBox="0 0 1441 184">
                             <path
                                 fillRule="evenodd"
@@ -27,34 +27,10 @@ class Home extends Component {
                             />
                         </svg>
                     </h1>
-                    <HeaderLinks pathname={pathname} t={t} />
+                    <HeaderLinks pathname={pathname} t={t} className={styles.home__navigation_bar} />
                     <img src="assets/img/video-pic.png" alt="video" className={styles.home__hero_video} />
 
-                    <h2 className={styles.home__pages_title}>{t('home:studio__title')}</h2>
-
-                    <h2 className={styles.home__slogan}>
-                        <div className={styles.home__slogan_text}>
-                            <div className={styles.home__slogan_word_wrapper}>
-                                <span className={styles.home__slogan_decoration}>{t('home:slogan__word_a')}</span>
-                            </div>
-
-                            <span className={styles.home__slogan_words}>{t('home:slogan__words')}</span>
-                        </div>
-
-                        <div className={styles.home__slogan_text}>
-                            <span className={styles.home__slogan_words}>{t('home:slogan__word_studio')}</span>
-                            <div className={styles.home__slogan_word_wrapper}>
-                                <span className={styles.home__slogan_decoration}>{t('home:slogan__word_in')}</span>
-                            </div>
-                            <span className={styles.home__slogan_words}>{t('home:slogan__word_city')}</span>
-                        </div>
-                        <span>{t('home:slogan__word_country')}</span>
-                    </h2>
-                    <div className={styles.home__button_wrapper}>
-                        <Button className={styles.home__button_cta} href="/studio">
-                            {t('home:studio__button')}
-                        </Button>
-                    </div>
+                    <SectionStudio t={t} />
                 </div>
 
                 {/* <div className={styles.video}>

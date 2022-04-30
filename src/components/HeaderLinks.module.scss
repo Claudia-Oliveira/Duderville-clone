@@ -1,11 +1,16 @@
 @import 'styles/partials/lists';
+@import 'styles/partials/buttons';
 
 .header__links {
+    display: none;
+}
+
+.header__links_default {
     @extend .list;
 
-    display: flex;
+    display: none;
 
-    width: fit-content;
+    width: max-content;
     height: rem(54px);
 
     border-top: 1px solid $color-dark-charcoal;
@@ -20,4 +25,70 @@
     gap: rem(109px);
     align-items: center;
     justify-content: flex-end;
+}
+
+.header__links_current {
+    @extend .list;
+
+    display: none;
+
+    flex-direction: row;
+
+    width: max-content;
+
+    margin: 0 auto;
+    margin-bottom: rem(65px);
+
+    border: none;
+
+    font-family: $font-plaak;
+
+    text-transform: uppercase;
+
+    color: $color-dark-charcoal;
+
+    gap: rem(109px);
+    justify-content: center;
+}
+
+.header__links_default_li:first-child {
+    margin-left: rem(109px);
+}
+
+.header__links_home_buttons {
+    @extend .button;
+
+    text-decoration: none;
+
+    color: $color-dark-charcoal;
+}
+
+@media screen and (max-width: $breakpoint-narrow) {
+    .header__links_default {
+        display: none;
+    }
+
+    .header__links_current {
+        display: none;
+    }
+}
+
+@media screen and (min-width: $breakpoint-regular) {
+    .header__links_default {
+        display: flex;
+    }
+
+    .header__links_current {
+        display: flex;
+    }
+}
+
+@media (min-width: $breakpoint-regular) and (max-width: ($breakpoint-wide - 1)) {
+    .header__links_default {
+        display: none;
+    }
+
+    .header__links_current {
+        display: none;
+    }
 }

@@ -1,0 +1,86 @@
+@import 'styles/partials/buttons';
+@import 'styles/partials/lists';
+
+.sectionStudio__pages_title {
+    display: block;
+
+    margin: 0 auto;
+    margin-bottom: rem(61px);
+
+    font-family: $font-plaak;
+    font-size: rem(20px);
+    font-weight: 300;
+    letter-spacing: rem(10px);
+
+    text-align: center;
+    text-transform: uppercase;
+
+    color: $color-dark-charcoal;
+}
+
+.sectionStudio__title {
+    position: relative;
+    display: inline-block;
+
+    flex-direction: row;
+
+    margin: 0 auto;
+    margin-bottom: rem(75px);
+
+    font-family: $font-plaak-bold;
+    font-size: rem(110px);
+    font-weight: 300;
+    letter-spacing: rem(2px);
+    line-height: rem(100px);
+
+    text-align: center;
+    text-transform: uppercase;
+
+    color: $color-dark-charcoal;
+
+    align-items: center;
+}
+
+.sectionStudio__title_emphasis {
+    position: relative;
+    top: 0;
+    display: inline;
+
+    font-size: rem(75px);
+    font-style: normal;
+
+    vertical-align: text-top;
+    text-decoration: underline;
+}
+
+.sectionStudio__button_wrapper {
+    display: flex;
+
+    flex-direction: column;
+
+    margin-bottom: rem(85px);
+
+    align-items: center;
+}
+
+.sectionStudio__button_cta {
+    @extend .button;
+
+    position: relative;
+    display: block;
+
+    margin: 0 auto;
+    padding: rem(35px) rem(50px);
+
+    border: 1px solid $color-dark-charcoal;
+
+    box-shadow: 2px 2px $color-black;
+
+    font-family: $font-plaak;
+    font-size: rem(21px);
+    font-size: rem(20px);
+    font-weight: 300;
+    letter-spacing: rem(5px);
+
+    color: $color-dark-charcoal;
+}
