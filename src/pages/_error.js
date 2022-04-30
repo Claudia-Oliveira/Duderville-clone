@@ -18,7 +18,7 @@ export default withTranslation(Error);
 
 // fallback to vars assigned for static export
 export const getStaticProps = ({ locale = process.env.LOCALE, locales = process.env.LOCALES }) => {
-    const shared = ['header', 'header-links', 'footer', 'cookie-notification'];
+    const shared = ['header', 'navigation-bar', 'footer', 'cookie-notification'];
     const translation = getTranslation({
         locale,
         locales,

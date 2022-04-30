@@ -4,7 +4,7 @@ import styles from './Header.module.scss';
 import React, { Component } from 'react';
 import Button from './Button';
 
-import HeaderLinks from './HeaderLinks';
+import HeaderLinks from './NavigationBar';
 
 import { resizeManager } from '@superherocheesecake/next-resize-manager';
 

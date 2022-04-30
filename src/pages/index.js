@@ -1,10 +1,11 @@
 import Head from 'next/head';
 import React, { Component } from 'react';
 import styles from './index.module.scss';
-import HeaderLinks from 'components/HeaderLinks';
 import { withTranslation, getTranslation } from 'utils/translations/i18n';
 import SectionStudio from 'components/SectionStudio';
 import SectionCases from 'components/SectionCases';
+import NavigationBar from 'components/NavigationBar';
+import SectionProcessContact from 'components/SectionProcessContact';
 
 class Home extends Component {
     render() {
@@ -27,7 +28,7 @@ class Home extends Component {
                             />
                         </svg>
                     </h1>
-                    <HeaderLinks pathname={pathname} t={t} className={styles.home__navigation_bar} />
+                    <NavigationBar pathname={pathname} t={t} className={styles.home__navigation_bar} />
                     <img src="assets/img/video-pic.png" alt="video" className={styles.home__hero_video} />
 
                     <SectionStudio t={t} />
@@ -38,6 +39,7 @@ class Home extends Component {
                 </div> */}
 
                 <SectionCases t={t} />
+                <SectionProcessContact t={t} />
             </div>
         );
     }
@@ -46,7 +48,7 @@ class Home extends Component {
 export default withTranslation(Home);
 // fallback to vars assigned for static export
 export const getStaticProps = ({ locale = process.env.LOCALE, locales = process.env.LOCALES }) => {
-    const shared = ['header', 'header-links', 'footer', 'cookie-notification'];
+    const shared = ['header', 'navigation-bar', 'section-process-contact', 'footer', 'cookie-notification'];
     const translation = getTranslation({
         locale,
         locales,

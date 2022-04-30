@@ -1,0 +1,93 @@
+.section_process_contact__container {
+    display: flex;
+
+    flex-direction: column;
+
+    width: 100vw;
+
+    background-color: $color-chinese-white;
+}
+
+.section_process_contact__card:first-of-type {
+    border-bottom: 1px solid $color-dark-charcoal;
+}
+
+.section_process_contact__card:last-of-type {
+    padding-top: rem(240px);
+}
+.section_process_contact__title {
+    display: block;
+
+    margin: 0 auto;
+    margin-bottom: rem(175px);
+    padding-top: rem(115px);
+
+    font-family: $font-plaak;
+    font-size: rem(20px);
+    font-weight: 300;
+    letter-spacing: rem(10px);
+
+    text-align: center;
+    text-transform: uppercase;
+
+    color: $color-dark-charcoal;
+}
+
+.section_process_contact__process_img {
+    display: block;
+
+    height: rem(400px);
+
+    margin: 0 auto;
+    margin-bottom: rem(100px);
+    padding: 0;
+}
+
+.section_process_contact__card_title {
+    display: block;
+
+    margin: 0 auto;
+    margin-bottom: rem(68px);
+
+    font-family: $font-plaak-bold;
+    font-size: rem(74px);
+
+    text-align: center;
+    text-transform: uppercase;
+
+    color: $color-dark-charcoal;
+}
+
+.section_process_contact__card_button {
+    display: flex;
+
+    width: rem(170px);
+    height: rem(95px);
+
+    margin: 0 auto;
+    margin-bottom: rem(86px);
+
+    background-color: $color-dark-charcoal;
+
+    justify-content: center;
+    align-items: center;
+}
+
+.section_process_contact__button_icon {
+    width: rem(26px);
+    height: rem(9px);
+
+    margin: 0 auto;
+
+    fill: $color-chinese-white;
+}
+
+.section_process_contact__contact_img {
+    display: block;
+
+    height: rem(280px);
+
+    margin: 0 auto;
+    margin-bottom: rem(100px);
+    padding: 0;
+}

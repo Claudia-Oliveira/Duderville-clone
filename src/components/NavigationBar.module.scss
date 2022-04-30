@@ -1,11 +1,11 @@
 @import 'styles/partials/lists';
 @import 'styles/partials/buttons';
 
-.header__links {
+.navigation_bar_ {
     display: none;
 }
 
-.header__links_default {
+.navigation_bar__default {
     @extend .list;
 
     display: none;
@@ -27,7 +27,7 @@
     justify-content: flex-end;
 }
 
-.header__links_current {
+.navigation_bar__current {
     @extend .list;
 
     display: none;
@@ -51,11 +51,11 @@
     justify-content: center;
 }
 
-.header__links_default_li:first-child {
+.navigation_bar__default_li:first-child {
     margin-left: rem(109px);
 }
 
-.header__links_home_buttons {
+.navigation_bar__home_buttons {
     @extend .button;
 
     text-decoration: none;
@@ -64,31 +64,31 @@
 }
 
 @media screen and (max-width: $breakpoint-narrow) {
-    .header__links_default {
+    .navigation_bar__default {
         display: none;
     }
 
-    .header__links_current {
+    .navigation_bar__current {
         display: none;
     }
 }
 
 @media screen and (min-width: $breakpoint-regular) {
-    .header__links_default {
+    .navigation_bar__default {
         display: flex;
     }
 
-    .header__links_current {
+    .navigation_bar__current {
         display: flex;
     }
 }
 
 @media (min-width: $breakpoint-regular) and (max-width: ($breakpoint-wide - 1)) {
-    .header__links_default {
+    .navigation_bar__default {
         display: none;
     }
 
-    .header__links_current {
+    .navigation_bar__current {
         display: none;
     }
 }
