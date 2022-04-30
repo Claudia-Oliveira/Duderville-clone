@@ -22,8 +22,6 @@
     position: relative;
     display: inline-block;
 
-    flex-direction: row;
-
     margin: 0 auto;
     margin-bottom: rem(75px);
 
@@ -37,8 +35,6 @@
     text-transform: uppercase;
 
     color: $color-dark-charcoal;
-
-    align-items: center;
 }
 
 .sectionStudio__title_emphasis {

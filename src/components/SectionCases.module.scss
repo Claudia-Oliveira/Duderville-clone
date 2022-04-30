@@ -1,0 +1,117 @@
+@import 'styles/partials/buttons';
+@import 'styles/partials/lists';
+
+.sectionCases__container {
+    position: relative;
+    display: flex;
+
+    flex-direction: column;
+
+    width: 100vw;
+
+    padding-top: rem(65px);
+    padding-bottom: rem(30px);
+
+    background-color: $color-dark-charcoal;
+
+    font-family: $font-plaak-bold;
+    font-size: rem(20px);
+    font-weight: 300;
+
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.sectionCases__title {
+    display: block;
+
+    margin: 0 auto;
+    margin-bottom: rem(61px);
+
+    font-family: $font-plaak;
+    font-size: rem(20px);
+    font-weight: 300;
+    letter-spacing: rem(10px);
+
+    text-align: center;
+    text-transform: uppercase;
+
+    color: $color-chinese-white;
+}
+
+.sectionCases__links {
+    display: flex;
+
+    flex-direction: column;
+
+    width: 93vw;
+
+    margin: 0 auto;
+
+    border: 1px solid $color-chinese-white;
+}
+
+.sectionCases__button_cases {
+    display: flex;
+
+    flex-direction: row;
+
+    width: 93vw;
+
+    padding: rem(28px);
+
+    text-decoration: none;
+
+    color: $color-chinese-white;
+
+    justify-content: space-between;
+}
+
+.sectionCases__button_li:not(last-of-type) {
+    border-bottom: 1px solid $color-chinese-white;
+}
+
+.sectionCases__button_li:last-of-type {
+    background-color: $color-chinese-white;
+}
+
+.sectionCases__button_cases_work {
+    display: flex;
+
+    padding: rem(28px);
+
+    border-bottom: 1px solid $color-chinese-white;
+
+    background-color: $color-chinese-white;
+
+    text-decoration: none;
+
+    color: $color-dark-charcoal;
+
+    justify-content: flex-end;
+}
+
+.sectionCases__button_icon {
+    width: rem(16px);
+
+    fill: $color-chinese-white;
+}
+
+.sectionCases__button_label {
+    font-size: rem(145px);
+    letter-spacing: 0;
+}
+
+.sectionCases__button_icon_work {
+    width: rem(16px);
+
+    margin-left: rem(40px);
+
+    fill: $color-dark-charcoal;
+}
+
+@media (min-width: $breakpoint-regular) {
+    .sectionCases__button_icon_work {
+        margin-left: rem(430px);
+    }
+}
