@@ -31,7 +31,7 @@ export default class SectionCases extends Component {
                     })}
                     <li className={`${styles.item} ${styles.sectionCases__button_li}`}>
                         <Button href="/the-work" className={styles.sectionCases__button_cases_work}>
-                            <span className={styles.sectionCases__button_label}>{t('home:button__more_work')}</span>
+                            <span className={styles.sectionCases__button_label_work}>{t('home:button__more_work')}</span>
                             <svg className={styles.sectionCases__button_icon_work} viewBox="0 0 16 5">
                                 <path
                                     fillRule="evenodd"

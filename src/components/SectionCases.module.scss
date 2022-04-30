@@ -72,6 +72,9 @@
 }
 
 .sectionCases__button_li:last-of-type {
+    padding-top: rem(20px);
+    padding-bottom: rem(20px);
+
     background-color: $color-chinese-white;
 }
 
@@ -102,16 +105,23 @@
     letter-spacing: 0;
 }
 
+.sectionCases__button_label_work {
+    font-size: rem(95px);
+    letter-spacing: 0;
+
+    color: $color-dark-charcoal;
+}
+
 .sectionCases__button_icon_work {
     width: rem(16px);
 
-    margin-left: rem(40px);
+    margin-left: rem(130px);
 
     fill: $color-dark-charcoal;
 }
 
 @media (min-width: $breakpoint-regular) {
     .sectionCases__button_icon_work {
-        margin-left: rem(430px);
+        margin-left: rem(530px);
     }
 }

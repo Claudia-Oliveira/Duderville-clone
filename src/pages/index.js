@@ -29,10 +29,11 @@ class Home extends Component {
                         </svg>
                     </h1>
                     <NavigationBar pathname={pathname} t={t} className={styles.home__navigation_bar} />
-                    <img src="assets/img/video-pic.png" alt="video" className={styles.home__hero_video} />
-
-                    <SectionStudio t={t} />
                 </div>
+
+                <img src="assets/img/home-pic.png" alt="image with pink background" className={styles.home__hero_image} />
+
+                <SectionStudio t={t} />
 
                 {/* <div className={styles.video}>
                     <div className={styles.actualVideo}></div>

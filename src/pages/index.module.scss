@@ -56,9 +56,32 @@
     height: 100%;
 }
 
-.home__hero_video {
+.home__hero_image {
+    display: block;
+
     width: rem(700px);
     height: rem(700px);
 
+    margin: 0 auto;
     margin-bottom: rem(68px);
+}
+
+@media (min-width: $breakpoint-regular) {
+    .home__hero_container {
+        left: 0;
+
+        width: rem(1445px);
+        height: rem(185px);
+    }
+
+    .home__hero_image {
+        width: 97%;
+        height: rem(692px);
+    }
+}
+
+@media (min-width: $breakpoint-wide) {
+    .home__hero_container {
+        margin-bottom: rem(65px);
+    }
 }
