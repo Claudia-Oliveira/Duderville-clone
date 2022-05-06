@@ -10,7 +10,7 @@ export default class NavigationBar extends Component {
         const { t } = this.props;
         let pathname = this.props.pathname;
         // eslint-disable-next-line no-console
-        console.log('pathname', pathname);
+        // console.log('pathname', pathname);
 
         const isCurrentClassNameUl = pathname === '/' ? styles.navigation_bar__current : styles.navigation_bar__default;
         const isCurrentClassNameLi = pathname === '/' ? styles.navigation_bar__current_li : styles.navigation_bar__default_li;

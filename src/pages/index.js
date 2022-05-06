@@ -31,7 +31,9 @@ class Home extends Component {
                     <NavigationBar pathname={pathname} t={t} className={styles.home__navigation_bar} />
                 </div>
 
-                <img src="assets/img/home-pic.png" alt="image with pink background" className={styles.home__hero_image} />
+                <div className={styles.home__hero_image}>
+                    <img src="assets/img/volume-closed-icon.png" alt="volume closed" className={styles.home__volume_icon} />
+                </div>
 
                 <SectionStudio t={t} />
 

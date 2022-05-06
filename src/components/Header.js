@@ -21,7 +21,7 @@ export default class Header extends Component {
     render() {
         const { t } = this.props;
         let pathname = this.props.router.pathname;
-        console.log(t('header', { returnObjects: true }));
+        // console.log(t('header', { returnObjects: true }));
 
         return (
             <nav className={styles.header}>

@@ -33,8 +33,6 @@
 }
 
 .header__links {
-    @extend .header__links;
-
     display: none;
 }
 
@@ -57,6 +55,7 @@
 }
 
 .home__hero_image {
+    position: relative;
     display: block;
 
     width: rem(700px);
@@ -64,6 +63,19 @@
 
     margin: 0 auto;
     margin-bottom: rem(68px);
+
+    background: url('../../public/assets/img/hero-image.png');
+    background-position: center;
+    background-size: cover;
+}
+
+.home__volume_icon {
+    position: absolute;
+    bottom: rem(48px);
+    left: rem(48px);
+
+    width: rem(32px);
+    height: rem(28px);
 }
 
 @media (min-width: $breakpoint-regular) {

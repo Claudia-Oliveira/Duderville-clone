@@ -80,3 +80,17 @@
 
     color: $color-dark-charcoal;
 }
+
+@media (min-width: $breakpoint-wide) {
+    .sectionStudio__title_emphasis {
+        font-size: rem(74px);
+    }
+
+    .sectionStudio__title_emphasis:first-of-type,
+    .sectionStudio__title_word {
+        margin-left: rem(400px);
+    }
+    .sectionStudio__title {
+        font-size: rem(113px);
+    }
+}

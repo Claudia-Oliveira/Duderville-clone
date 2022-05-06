@@ -81,6 +81,8 @@
 .sectionCases__button_cases_work {
     display: flex;
 
+    flex-direction: row;
+
     padding: rem(28px);
 
     border-bottom: 1px solid $color-chinese-white;
@@ -123,5 +125,52 @@
 @media (min-width: $breakpoint-regular) {
     .sectionCases__button_icon_work {
         margin-left: rem(530px);
+    }
+}
+
+@media (min-width: $breakpoint-wide) {
+    .sectionCases__button_cases {
+        position: relative;
+        display: flex;
+
+        flex-direction: column;
+
+        padding-top: 0;
+
+        align-items: center;
+    }
+
+    .sectionCases__button_order {
+        position: absolute;
+        top: rem(52px);
+        left: rem(65px);
+    }
+
+    .sectionCases__button_label {
+        margin-bottom: rem(15px);
+        padding-top: rem(30px);
+
+        font-size: rem(175px);
+    }
+
+    .sectionCases__button_icon {
+        margin-bottom: rem(25px);
+    }
+
+    .sectionCases__button_cases_work {
+        display: flex;
+
+        flex-direction: column;
+
+        margin: 0 auto;
+        padding-top: rem(52px);
+    }
+
+    .sectionCases__button_label_work {
+        margin-bottom: rem(25px);
+    }
+
+    .sectionCases__button_icon_work {
+        margin: 0 auto;
     }
 }
