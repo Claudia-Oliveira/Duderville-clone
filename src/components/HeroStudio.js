@@ -19,22 +19,6 @@ export default class HeroStudio extends Component {
                 </svg>
 
                 <div className={styles.heroStudio__image}></div>
-
-                <h2 className={styles.heroStudio__subtitle}>{t('studio:section_title_first')}</h2>
-
-                <h2 className={styles.heroStudio__title_slogan}>
-                    <span className={styles.heroStudio__title_word}>{t('studio:section_slogan_first')}</span>
-                    <em className={styles.heroStudio__title_emphasis}>{t('studio:section_slogan_emphasis_a')}</em>
-                    <span className={styles.heroStudio__title_word}>{t('studio:section_slogan_second')}</span>
-                    <em className={styles.heroStudio__title_emphasis}>{t('studio:section_slogan_emphasis_of')}</em>
-                    <span className={styles.heroStudio__title_word}>{t('studio:section_slogan_third')}</span>
-                    <em className={styles.heroStudio__title_emphasis}>{t('studio:section_slogan_emphasis_and')}</em>
-                    <span className={styles.heroStudio__title_word}>{t('studio:section_slogan_fourth')}</span>
-                </h2>
-
-                <p className={styles.heroStudio__paragraph}>{t('studio:section_about_paragraph')}</p>
-
-                <img className={styles.heroStudio__feathers} src="assets/img/feathers.png" alt="feathers" />
             </section>
         );
     }
