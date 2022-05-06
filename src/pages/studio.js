@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { withTranslation, getTranslation } from 'utils/translations/i18n';
 import Head from 'next/head';
 import SectionProcessContact from 'components/SectionProcessContact';
+import HeroStudio from 'components/HeroStudio';
 
 class Studio extends Component {
     render() {
@@ -13,7 +14,7 @@ class Studio extends Component {
                     <title>{t('studio:meta__title')}</title>
                 </Head>
 
-                <h1>{t('studio:heading')}</h1>
+                <HeroStudio t={t} />
                 <SectionProcessContact t={t} />
             </div>
         );
