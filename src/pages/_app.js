@@ -13,14 +13,26 @@ import { report } from 'components/performance/WebVitals';
 
 import GoogleGlobalSiteTag from 'components/analytics/GoogleGlobalSiteTag';
 
+import WatchForHover from 'utils/WatchForHover';
+
 import Header from 'components/Header';
 import Footer from 'components/Footer';
+//import OverlayMenu from 'components/OverlayMenu';
 
 export function reportWebVitals(props) {
     report(props);
 }
 
 class Application extends React.Component {
+    state = {
+        overlayNavigationVisible: false,
+        isNarrow: null
+    };
+
+    componentDidMount() {
+        new WatchForHover();
+    }
+
     render() {
         const { Component, t, pageProps, router, children } = this.props;
 
@@ -42,13 +54,23 @@ class Application extends React.Component {
                 </Transition>
 
                 <Footer t={t}></Footer>
-
+                {/* <OverlayMenu t={t} {...pageProps} router={router} /> */}
                 <Analytics>
                     <GoogleGlobalSiteTag />
                 </Analytics>
             </>
         );
     }
+
+    _handleButtonHamburgerClick = (overlayNavigationVisible = true) => {
+        this.setState({ overlayNavigationVisible: !overlayNavigationVisible }, () => {
+            if (this.state.overlayNavigationVisible) {
+                document.body.style.overflowY = 'hidden';
+            } else {
+                document.body.style.overflowY = 'scroll';
+            }
+        });
+    };
 }
 
 export default withTranslationApp(Application);

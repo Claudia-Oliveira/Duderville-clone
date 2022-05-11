@@ -112,6 +112,10 @@
     text-decoration: none;
 }
 
+.footer__block_link:hover {
+    color: $color-spanish-pink;
+}
+
 .footer__block_link_social_media {
     margin-bottom: rem(40px);
 }

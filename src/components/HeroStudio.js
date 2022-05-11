@@ -1,8 +1,13 @@
 import styles from './HeroStudio.module.scss';
+import { gsap } from 'gsap';
 
 import React, { Component } from 'react';
 
 export default class HeroStudio extends Component {
+    componentDidMount() {
+        this._animate();
+    }
+
     render() {
         const { t } = this.props;
 
@@ -21,5 +26,14 @@ export default class HeroStudio extends Component {
                 <div className={styles.heroStudio__image}></div>
             </section>
         );
+    }
+
+    _animate() {
+        gsap.to('.heroStudio__scroll_arrow', {
+            duration: 1,
+            y: 10,
+            repeat: -1,
+            yoyo: true
+        });
     }
 }

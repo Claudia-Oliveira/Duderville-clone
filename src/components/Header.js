@@ -4,11 +4,18 @@ import styles from './Header.module.scss';
 import React, { Component } from 'react';
 import Button from './Button';
 
-import HeaderLinks from './NavigationBar';
+import Navigation from './Navigation';
 
 import { resizeManager } from '@superherocheesecake/next-resize-manager';
 
+import { isMediaQueryNarrow, isMediaQueryRegular } from 'utils/DeviceUtil';
+import { isFunction } from 'utils/helpers';
+
 export default class Header extends Component {
+    state = {
+        isNarrow: true
+    };
+
     componentDidMount() {
         this._setupEventListeners();
         this._resize();
@@ -19,33 +26,37 @@ export default class Header extends Component {
     }
 
     render() {
-        const { t } = this.props;
+        const { t, fragment } = this.props;
         let pathname = this.props.router.pathname;
+        const { isNarrow } = this.state;
         // console.log(t('header', { returnObjects: true }));
+        const showNavigation = isNarrow ? false : fragment === '/' ? false : true;
 
         return (
             <nav className={styles.header}>
-                <div className={`${styles.header__mobile} ${styles.header__is_narrow}`}>
-                    <div className={styles.header__mobile_logo_copy}>
-                        <Button href="/">
-                            <svg className={styles.header__mobile_logo_feathers} viewBox="0 0 32 46.376">
-                                <path
-                                    id="feathers"
-                                    fill="#2c2c2c"
-                                    fillRule="evenodd"
-                                    d="M3890.62,649.217a14.387,14.387,0,0,1-1.1-2.226,8.6,8.6,0,0,1,.01-2.447c-0.02-.075.19-1.393-2.79-4.238s-3.08-3.165-3.27-3.8a5.4,5.4,0,0,0,2.39,1.2s-6.92-4.821-6.4-6.665a2.687,2.687,0,0,0,1.95,1.366,8.988,8.988,0,0,1-3.27-8.6s8.11-.428,10.54,6.18a3.234,3.234,0,0,1,.62-1.177s3.96,2.361,7.1,11.707c0,0,2.04,5.648-.35,10.146a10.723,10.723,0,0,0-.94,2.622l-0.22,1.861a2.426,2.426,0,0,1-.98.3,6.475,6.475,0,0,1,.14-1.975C3894.22,651.232,3892.37,649.23,3890.62,649.217Zm3.67,0.2c0.25-11.3-12.44-21.771-12.44-21.771,2.42,3.7,10.38,8.964,12.44,21.771h0Zm0,0,11.84,15.985a14.214,14.214,0,0,0,.34-2.114,6.619,6.619,0,0,0-.55-1.7c-0.01-.057-0.45-0.926.99-3.572s1.43-2.891,1.42-3.378a3.931,3.931,0,0,1-1.4,1.369s3.74-4.9,2.96-6.069a1.953,1.953,0,0,1-1.04,1.386,6.59,6.59,0,0,0,.35-6.712s-5.74,1.523-5.95,6.661a2.311,2.311,0,0,0-.7-0.678s-2.22,2.53-2.32,9.732c0,0-.15,4.385,2.52,6.976a11.339,11.339,0,0,1,.93,1.147c0.13,0.249.88,1.708,0.88,1.708a1.762,1.762,0,0,0,.75-0.011,4.026,4.026,0,0,0-.54-1.342C3904.35,667.867,3904.84,665.523,3906.13,665.4Zm-2.43.644c-2.7-7.8,3.77-17.927,3.77-17.927-0.85,3.118-5.21,8.561-3.77,17.927h0Zm0,0"
-                                    transform="translate(-3878 -623.812)"
-                                />
+                {this.state.isNarrow && (
+                    <div className={`${styles.header__mobile} ${styles.header__is_narrow}`}>
+                        <div className={styles.header__mobile_logo_copy}>
+                            <Button href="/">
+                                <svg className={styles.header__mobile_logo_feathers} viewBox="0 0 32 46.376">
+                                    <path
+                                        id="feathers"
+                                        fill="#2c2c2c"
+                                        fillRule="evenodd"
+                                        d="M3890.62,649.217a14.387,14.387,0,0,1-1.1-2.226,8.6,8.6,0,0,1,.01-2.447c-0.02-.075.19-1.393-2.79-4.238s-3.08-3.165-3.27-3.8a5.4,5.4,0,0,0,2.39,1.2s-6.92-4.821-6.4-6.665a2.687,2.687,0,0,0,1.95,1.366,8.988,8.988,0,0,1-3.27-8.6s8.11-.428,10.54,6.18a3.234,3.234,0,0,1,.62-1.177s3.96,2.361,7.1,11.707c0,0,2.04,5.648-.35,10.146a10.723,10.723,0,0,0-.94,2.622l-0.22,1.861a2.426,2.426,0,0,1-.98.3,6.475,6.475,0,0,1,.14-1.975C3894.22,651.232,3892.37,649.23,3890.62,649.217Zm3.67,0.2c0.25-11.3-12.44-21.771-12.44-21.771,2.42,3.7,10.38,8.964,12.44,21.771h0Zm0,0,11.84,15.985a14.214,14.214,0,0,0,.34-2.114,6.619,6.619,0,0,0-.55-1.7c-0.01-.057-0.45-0.926.99-3.572s1.43-2.891,1.42-3.378a3.931,3.931,0,0,1-1.4,1.369s3.74-4.9,2.96-6.069a1.953,1.953,0,0,1-1.04,1.386,6.59,6.59,0,0,0,.35-6.712s-5.74,1.523-5.95,6.661a2.311,2.311,0,0,0-.7-0.678s-2.22,2.53-2.32,9.732c0,0-.15,4.385,2.52,6.976a11.339,11.339,0,0,1,.93,1.147c0.13,0.249.88,1.708,0.88,1.708a1.762,1.762,0,0,0,.75-0.011,4.026,4.026,0,0,0-.54-1.342C3904.35,667.867,3904.84,665.523,3906.13,665.4Zm-2.43.644c-2.7-7.8,3.77-17.927,3.77-17.927-0.85,3.118-5.21,8.561-3.77,17.927h0Zm0,0"
+                                        transform="translate(-3878 -623.812)"
+                                    />
+                                </svg>
+                            </Button>
+                            <span className={styles.header__mobile_copy}>{t('header:mobile__copy')}</span>
+                        </div>
+                        <Button className={styles.header__menu_button}>
+                            <svg className={styles.header__menu_button_icon} viewBox="0 0 29 20">
+                                <path fillRule="evenodd" fill="rgb(255, 255, 255)" d="M0.0,20.0 L0.0,16.999 L29.0,16.999 L29.0,20.0 L0.0,20.0 ZM0.0,0.0 L29.0,0.0 L29.0,2.999 L0.0,2.999 L0.0,0.0 Z" />
                             </svg>
                         </Button>
-                        <span className={styles.header__mobile_copy}>{t('header:mobile__copy')}</span>
                     </div>
-                    <Button className={styles.header__menu_button}>
-                        <svg className={styles.header__menu_button_icon} viewBox="0 0 29 20">
-                            <path fillRule="evenodd" fill="rgb(255, 255, 255)" d="M0.0,20.0 L0.0,16.999 L29.0,16.999 L29.0,20.0 L0.0,20.0 ZM0.0,0.0 L29.0,0.0 L29.0,2.999 L0.0,2.999 L0.0,0.0 Z" />
-                        </svg>
-                    </Button>
-                </div>
+                )}
 
                 <div className={`${styles.header__desktop} ${styles.header__is_wide}`}>
                     <span className={styles.header__desktop_copy}>{t('header:desktop__copy')}</span>
@@ -139,11 +150,19 @@ export default class Header extends Component {
                         </Button>
                     )}
 
-                    {pathname === '/' ? <span className={styles.header__desktop_copy_place}>{t('header:desktop__copy_place')}</span> : <HeaderLinks t={t} pathname={this.props.router.pathname} />}
+                    {pathname === '/' ? <span className={styles.header__desktop_copy_place}>{t('header:desktop__copy_place')}</span> : <Navigation t={t} pathname={this.props.router.pathname} />}
                 </div>
             </nav>
         );
     }
+
+    _handleClick = () => {
+        const { buttonHamburgerClicked, overlayNavigationVisible } = this.props;
+
+        if (isFunction(buttonHamburgerClicked)) {
+            buttonHamburgerClicked(!overlayNavigationVisible);
+        }
+    };
 
     _setupEventListeners() {
         resizeManager.addEventListener('resize', this._resizeHandler);
@@ -156,11 +175,25 @@ export default class Header extends Component {
     }
 
     _resize() {
-        resizeManager.addEventListener('resize', this._resizeHandler);
-        resizeManager.addEventListener('resize:complete', this._resizeHandler);
+        // if media query narrow = true => this.setState({ isNarrow: true });
+        // else => this.setState({ isNarrow: false });
+
+        if (isMediaQueryNarrow() || isMediaQueryRegular()) {
+            this.setState({ isNarrow: true });
+        } else {
+            this.setState({ isNarrow: false });
+        }
     }
 
     _resizeHandler = () => {
         this._resize();
+    };
+
+    _handleHamburgerClick = (overlayNavigationVisible) => {
+        const { buttonHamburgerClicked } = this.props;
+
+        if (isFunction(buttonHamburgerClicked)) {
+            buttonHamburgerClicked(!overlayNavigationVisible);
+        }
     };
 }

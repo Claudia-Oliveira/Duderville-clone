@@ -5,5 +5,19 @@
 }
 
 .is_active {
+    position: relative;
+
     text-decoration: line-through;
 }
+
+// .is_active::before {
+//     position: absolute;
+//     top: 0;
+//     left: 0;
+
+//     width: 20px;
+
+//     content: '';
+
+//     text-decoration: line-through;
+// }

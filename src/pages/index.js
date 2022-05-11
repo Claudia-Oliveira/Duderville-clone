@@ -4,7 +4,7 @@ import styles from './index.module.scss';
 import { withTranslation, getTranslation } from 'utils/translations/i18n';
 import SectionStudio from 'components/SectionStudio';
 import SectionCases from 'components/SectionCases';
-import NavigationBar from 'components/NavigationBar';
+import Navigation from 'components/Navigation';
 import SectionProcessContact from 'components/SectionProcessContact';
 
 class Home extends Component {
@@ -28,7 +28,7 @@ class Home extends Component {
                             />
                         </svg>
                     </h1>
-                    <NavigationBar pathname={pathname} t={t} className={styles.home__navigation_bar} />
+                    <Navigation pathname={pathname} t={t} className={styles.home__navigation_bar} />
                 </div>
 
                 <div className={styles.home__hero_image}>

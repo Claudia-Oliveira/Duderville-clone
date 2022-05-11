@@ -2,27 +2,28 @@
     "navigation": [
         {
             "button": {
-                "copy": "I. Studio",
+                "copy": "Studio",
                 "href": "/studio"
             }
         },
         {
             "button": {
-                "copy": "II. The Work",
+                "copy": "The Work",
                 "href": "/the-work"
             }
         },
         {
             "button": {
-                "copy": "III. Process",
+                "copy": "Process",
                 "href": "/process"
             }
         },
         {
             "button": {
-                "copy": "IV. Contact",
+                "copy": "Contact",
                 "href": "/contact"
             }
         }
-    ]
+    ],
+    "place": "Based in Malmö, Sweden"
 }
