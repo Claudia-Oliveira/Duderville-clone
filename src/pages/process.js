@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { withTranslation, getTranslation } from 'utils/translations/i18n';
 import Head from 'next/head';
+import Marquee from 'components/Marquee';
+//import Spritesheet from 'components/Spritesheet';
+//import Preloader from 'components/Preloader';
 
 class Process extends Component {
     render() {
@@ -11,7 +14,9 @@ class Process extends Component {
                 <Head>
                     <title>{t('process:meta__title')}</title>
                 </Head>
-
+                <Marquee />
+                {/* <Spritesheet /> */}
+                <div ref={this.title}></div>
                 <h1>{t('process:heading')}</h1>
             </div>
         );

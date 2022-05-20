@@ -5,6 +5,7 @@ import React, { Component } from 'react';
 import Button from './Button';
 
 import Navigation from './Navigation';
+import HamburgerMenu from './HamburgerMenu';
 
 import { resizeManager } from '@superherocheesecake/next-resize-manager';
 
@@ -50,11 +51,25 @@ export default class Header extends Component {
                             </Button>
                             <span className={styles.header__mobile_copy}>{t('header:mobile__copy')}</span>
                         </div>
-                        <Button className={styles.header__menu_button}>
-                            <svg className={styles.header__menu_button_icon} viewBox="0 0 29 20">
-                                <path fillRule="evenodd" fill="rgb(255, 255, 255)" d="M0.0,20.0 L0.0,16.999 L29.0,16.999 L29.0,20.0 L0.0,20.0 ZM0.0,0.0 L29.0,0.0 L29.0,2.999 L0.0,2.999 L0.0,0.0 Z" />
-                            </svg>
-                        </Button>
+
+                        {/* if button is clicked show Navigation */}
+
+                        <HamburgerMenu onClick={this._handleClick} showNavigation={showNavigation} />
+                        {/* <Button className={styles.header__menu_button} onClick={this._handleClick}>
+                            {showNavigation ? (
+                                <svg className={styles.header__menu_button_icon} viewBox="0 0 22.81 23.062">
+                                    <path d="M5358.31,636.186l20.5,20.507-2.12,2.121-20.5-20.507Zm-1.93,20.957,20.51-20.506,2.12,2.122-20.51,20.506Z" transform="translate(-5356.19 -636.188)" />
+                                </svg>
+                            ) : (
+                                <svg className={styles.header__menu_button_icon} viewBox="0 0 29 20">
+                                    <path
+                                        fillRule="evenodd"
+                                        fill="rgb(255, 255, 255)"
+                                        d="M0.0,20.0 L0.0,16.999 L29.0,16.999 L29.0,20.0 L0.0,20.0 ZM0.0,0.0 L29.0,0.0 L29.0,2.999 L0.0,2.999 L0.0,0.0 Z"
+                                    />
+                                </svg>
+                            )}
+                        </Button> */}
                     </div>
                 )}
 
@@ -156,6 +171,7 @@ export default class Header extends Component {
         );
     }
 
+    // the handleClick function is passed to the HamburgerMenu and is called when the user clicks on the menu button
     _handleClick = () => {
         const { buttonHamburgerClicked, overlayNavigationVisible } = this.props;
 
@@ -175,9 +191,6 @@ export default class Header extends Component {
     }
 
     _resize() {
-        // if media query narrow = true => this.setState({ isNarrow: true });
-        // else => this.setState({ isNarrow: false });
-
         if (isMediaQueryNarrow() || isMediaQueryRegular()) {
             this.setState({ isNarrow: true });
         } else {

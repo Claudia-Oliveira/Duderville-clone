@@ -1,40 +1,55 @@
 import 'styles/main.scss';
 
 import { withTranslationApp } from 'utils/translations/i18n';
-import Analytics from 'components/analytics/Analytics';
+import WatchForHover from 'utils/WatchForHover';
+// import Analytics from 'components/analytics/Analytics';
+import { resizeManager } from '@superherocheesecake/next-resize-manager';
+//import { isMediaQueryWide } from 'utils/DeviceUtil';
 
 import Transition from '@superherocheesecake/next-transition';
 
 import React from 'react';
 import Head from 'next/head';
 
-import SafariCacheFix from 'components/performance/SafariCacheFix';
-import { report } from 'components/performance/WebVitals';
+import { Router } from 'next/router';
 
-import GoogleGlobalSiteTag from 'components/analytics/GoogleGlobalSiteTag';
+// import SafariCacheFix from 'components/performance/SafariCacheFix';
+// import { report } from 'components/performance/WebVitals';
 
-import WatchForHover from 'utils/WatchForHover';
+// import CookieNotification from 'components/CookieNotification';
+// import GoogleGlobalSiteTag from 'components/analytics/GoogleGlobalSiteTag';
 
 import Header from 'components/Header';
 import Footer from 'components/Footer';
-//import OverlayMenu from 'components/OverlayMenu';
+//import MenuOverlay from 'components/MenuOverlay';
+import Preloader from 'components/Preloader';
 
-export function reportWebVitals(props) {
-    report(props);
-}
-
+// export function reportWebVitals(props) {
+//     report(props);
+// }
 class Application extends React.Component {
     state = {
-        overlayNavigationVisible: false,
-        isNarrow: null
+        overlayMenuVisible: false,
+        isNarrow: null,
+        // isMediaQueryWide: isMediaQueryWide() || null,
+        isPreloaderCompleted: false
     };
 
     componentDidMount() {
+        this._setupEventListers();
+        this._resize();
+        //this._setMediaQueryWide();
+
         new WatchForHover();
     }
 
+    componentWillUnmount() {
+        this._removeEventListers();
+    }
+
     render() {
-        const { Component, t, pageProps, router, children } = this.props;
+        const { Component, t, pageProps, router } = this.props;
+        const { overlayMenuVisible, isPreloaderCompleted } = this.state;
 
         return (
             <>
@@ -43,34 +58,75 @@ class Application extends React.Component {
                     <link rel="icon" type="image/png" href="/assets/img/favicon.png"></link>
                 </Head>
 
-                <SafariCacheFix />
+                {/* <SafariCacheFix /> */}
 
-                <Header t={t} router={router}>
-                    {children}
-                </Header>
+                {isPreloaderCompleted && (
+                    <>
+                        <Header overlayMenuVisible={overlayMenuVisible} onButtonMenuClicked={this._handleButtonMenuClick} t={t} router={router.pathname}></Header>
 
-                <Transition fragment={router.pathname}>
-                    <Component t={t} {...pageProps} router={router} />
-                </Transition>
+                        <Transition fragment={router.pathname}>
+                            <Component {...pageProps} />
+                        </Transition>
 
-                <Footer t={t}></Footer>
-                {/* <OverlayMenu t={t} {...pageProps} router={router} /> */}
+                        <Footer t={t} router={router.pathname}></Footer>
+                    </>
+                )}
+
+                {!isPreloaderCompleted && <Preloader onPreloaderCompleted={this._handlePreloaderCompleted} />}
+
+                {/* {overlayMenuVisible && <MenuOverlay t={t} router={router.pathname} />} */}
+                {/* 
                 <Analytics>
                     <GoogleGlobalSiteTag />
-                </Analytics>
+                </Analytics> */}
             </>
         );
     }
 
-    _handleButtonHamburgerClick = (overlayNavigationVisible = true) => {
-        this.setState({ overlayNavigationVisible: !overlayNavigationVisible }, () => {
-            if (this.state.overlayNavigationVisible) {
-                document.body.style.overflowY = 'hidden';
-            } else {
-                document.body.style.overflowY = 'scroll';
-            }
+    _setupEventListers() {
+        resizeManager.addEventListener('resize', this._resizeHandler);
+        resizeManager.addEventListener('resize:complete', this._resizeHandler);
+
+        Router.events.on('routeChangeStart', this._handleRouteChange);
+    }
+
+    _removeEventListers() {
+        resizeManager.removeEventListener('resize', this._resizeHandler);
+        resizeManager.removeEventListener('resize:complete', this._resizeHandler);
+
+        Router.events.off('routeChangeStart', this._handleRouteChange);
+    }
+
+    _resize() {
+        // this._setMediaQueryWide();
+        // this.setState({ overlayMenuVisible: false });
+    }
+
+    _resizeHandler = () => {
+        this._resize();
+    };
+
+    _handleRouteChange = () => {
+        setTimeout(() => {
+            this.setState({ overlayMenuVisible: false });
+        }, '800');
+    };
+
+    _handleButtonMenuClick = (overlayMenuVisible) => {
+        this.setState({ overlayMenuVisible: overlayMenuVisible }, () => {
+            //console.log(overlayMenuVisible);
         });
+    };
+
+    _handlePreloaderCompleted = () => {
+        this.setState({ isPreloaderCompleted: true });
     };
 }
 
 export default withTranslationApp(Application);
+
+//show the preloader until is completed, when it's done, show the transition with the index
+// when is completed call the props(preloaderComplete)
+// add a handler
+// preloader.active = true or false
+// preloader.complete = true or false
