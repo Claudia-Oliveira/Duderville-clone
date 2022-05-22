@@ -38,6 +38,6 @@ export default class Navigation extends Component {
         if (el && !this.revealRefs.current.includes(el)) {
             this.revealRefs.current.push(el);
         }
-        console.log(this.revealRefs.current);
+        // console.log(this.revealRefs.current);
     };
 }

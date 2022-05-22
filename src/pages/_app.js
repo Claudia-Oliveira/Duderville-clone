@@ -4,12 +4,13 @@ import { withTranslationApp } from 'utils/translations/i18n';
 import WatchForHover from 'utils/WatchForHover';
 // import Analytics from 'components/analytics/Analytics';
 import { resizeManager } from '@superherocheesecake/next-resize-manager';
-//import { isMediaQueryWide } from 'utils/DeviceUtil';
+import { isMediaQueryWide } from 'utils/DeviceUtil';
 
 import Transition from '@superherocheesecake/next-transition';
 
 import React from 'react';
 import Head from 'next/head';
+import Preloader from 'components/Preloader';
 
 import { Router } from 'next/router';
 
@@ -22,7 +23,8 @@ import { Router } from 'next/router';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
 //import MenuOverlay from 'components/MenuOverlay';
-import Preloader from 'components/Preloader';
+
+import CanvasCustomCursor from 'components/CanvasCustomCursor';
 
 // export function reportWebVitals(props) {
 //     report(props);
@@ -31,14 +33,14 @@ class Application extends React.Component {
     state = {
         overlayMenuVisible: false,
         isNarrow: null,
-        // isMediaQueryWide: isMediaQueryWide() || null,
+        isMediaQueryWide: isMediaQueryWide() || null,
         isPreloaderCompleted: false
     };
 
     componentDidMount() {
         this._setupEventListers();
         this._resize();
-        //this._setMediaQueryWide();
+        this._setMediaQueryWide();
 
         new WatchForHover();
     }
@@ -67,7 +69,7 @@ class Application extends React.Component {
                         <Transition fragment={router.pathname}>
                             <Component {...pageProps} />
                         </Transition>
-
+                        <CanvasCustomCursor />
                         <Footer t={t} router={router.pathname}></Footer>
                     </>
                 )}
@@ -81,6 +83,14 @@ class Application extends React.Component {
                 </Analytics> */}
             </>
         );
+    }
+
+    _setMediaQueryWide() {
+        const boolean = isMediaQueryWide();
+
+        if (this.state.isMediaQueryWide !== boolean) {
+            this.setState({ isMediaQueryWide: boolean });
+        }
     }
 
     _setupEventListers() {
@@ -98,8 +108,8 @@ class Application extends React.Component {
     }
 
     _resize() {
-        // this._setMediaQueryWide();
-        // this.setState({ overlayMenuVisible: false });
+        this._setMediaQueryWide();
+        this.setState({ overlayMenuVisible: false });
     }
 
     _resizeHandler = () => {

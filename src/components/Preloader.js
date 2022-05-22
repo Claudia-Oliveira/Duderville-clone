@@ -76,7 +76,7 @@ export default class Preloader extends Component {
         this._canvas.width = this._width;
         this._canvas.height = this._height;
 
-        console.log(this.el.current.clientWidth, this.el.current.clientHeight);
+        //console.log(this.el.current.clientWidth, this.el.current.clientHeight);
     }
 
     _killTimelines() {
@@ -108,7 +108,7 @@ export default class Preloader extends Component {
     _setupTlProgress() {
         this._tlProgress = gsap.timeline({ paused: true, onUpdate: this._handleTlProgressUpdate });
         this._tlProgress.to(this._tweenObject, { endAngle: 2 * Math.PI }, 0);
-        console.log('xx');
+        //console.log('xx');
     }
 
     _handleTlProgressUpdate = () => {
@@ -142,13 +142,13 @@ export default class Preloader extends Component {
         this._queue.load();
 
         // Get resource result from queue
-        const imageOne = this._queue.get('image-1');
+        // const imageOne = this._queue.get('image-1');
         // send the result to the console
-        console.log(imageOne);
+        //console.log(imageOne);
     }
 
     _removeQueue() {
-        console.log('_removeQueue');
+        //console.log('_removeQueue');
 
         if (this._queue) {
             this._queue.destroy();
@@ -163,7 +163,7 @@ export default class Preloader extends Component {
     _handleQueueStateChange = (state) => {
         const { onPreloaderCompleted } = this.props;
 
-        console.log('state:', state);
+        //console.log('state:', state);
 
         switch (state) {
             case QUEUE_STATE.LOADING: {
@@ -189,6 +189,6 @@ export default class Preloader extends Component {
 
     _playTlProgress(progress) {
         gsap.to(this._tlProgress, { progress });
-        console.log('progress:', this._tlProgress);
+        //console.log('progress:', this._tlProgress);
     }
 }

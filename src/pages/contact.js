@@ -4,7 +4,6 @@ import Head from 'next/head';
 
 import SpritesheetPreloaded from 'components/SpritesheetPreloaded';
 import HouseCanvas from 'components/HouseCanvas';
-import CanvasCustomCursor from 'components/CanvasCustomCursor';
 
 class Contact extends Component {
     render() {
@@ -18,7 +17,6 @@ class Contact extends Component {
 
                 <SpritesheetPreloaded />
                 <HouseCanvas />
-                <CanvasCustomCursor />
 
                 <h1>{t('contact:heading')}</h1>
             </div>

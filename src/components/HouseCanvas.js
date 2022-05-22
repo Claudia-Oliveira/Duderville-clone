@@ -1,12 +1,8 @@
 import React, { Component, createRef } from 'react';
+import styles from './HouseCanvas.module.scss';
 
 export default class Canvas extends Component {
     el = createRef();
-
-    state = {
-        index: 0,
-        onPreloaderCompleted: true
-    };
 
     componentDidMount() {
         this._setupCanvas();
@@ -14,7 +10,11 @@ export default class Canvas extends Component {
     }
 
     render() {
-        return <div>{this.state.onPreloaderCompleted && <canvas ref={this.el} width="800px" height="800px" />}</div>;
+        return (
+            <div className={styles.wrapper}>
+                <canvas ref={this.el} width="300px" height="300px" className={styles.canvas} />
+            </div>
+        );
     }
 
     _setupCanvas() {
@@ -25,14 +25,37 @@ export default class Canvas extends Component {
     _draw() {
         this._context.clearRect(0, 0, this._canvas.width, this._canvas.height);
 
+        this.gradient = this._context.createLinearGradient(0, 0, 270, 270);
+
+        this.gradient.addColorStop(0, 'red');
+        this.gradient.addColorStop(0.25, 'orange');
+        this.gradient.addColorStop(0.5, 'yellow');
+        this.gradient.addColorStop(0.75, 'green');
+        this.gradient.addColorStop(1, 'blue');
+        this._context.fillStyle = this.gradient;
+        this._context.fillRect(0, 0, this._canvas.width, this._canvas.height);
+
+        // Set line width
+        this._context.lineWidth = 10;
+
+        // Wall
+        this._context.strokeRect(75, 140, 150, 110);
+        this._context.fillStyle = 'pink';
+        this._context.fillRect(80, 140, 140, 105);
+        this._context.fill();
+
+        // Door
+        this._context.fillStyle = 'black';
+        this._context.fillRect(130, 190, 40, 60);
+
+        // Roof
         this._context.beginPath();
-        this._context.arc(75, 75, 50, 50, true); // Círculo exterior
-        this._context.moveTo(110, 75);
-        this._context.arc(75, 75, 35, 0, Math.PI, false); // Boca (sentido horário)
-        this._context.moveTo(65, 65);
-        this._context.arc(60, 65, 5, 0, Math.PI * 2, true); // Olho esquerdo
-        this._context.moveTo(95, 65);
-        this._context.arc(90, 65, 5, 0, Math.PI * 2, true); // Olho direito
+        this._context.moveTo(50, 140);
+        this._context.lineTo(150, 60);
+        this._context.lineTo(250, 140);
+        this._context.fillStyle = 'brown';
+        this._context.closePath();
+        this._context.fill();
         this._context.stroke();
     }
 }

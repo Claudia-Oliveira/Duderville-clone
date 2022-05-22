@@ -1,22 +1,20 @@
 import React, { Component, createRef } from 'react';
 import styles from './CanvasCustomCursor.module.scss';
+import gsap from 'gsap';
+import { resizeManager } from '@superherocheesecake/next-resize-manager';
 
 // create a custom cursor inside the canvas
 export default class CanvasCustomCursor extends Component {
-    el = createRef();
+    canvas = createRef();
+    wrapper = createRef();
 
-    state = {
-        index: 0,
-        onPreloaderCompleted: true
-    };
+    _mouseXPosition = 0;
+    _mouseYPosition = 0;
 
     componentDidMount() {
+        this._setupEventListeners();
         this._setupCanvas();
-        this._renderCursor();
-        this._getPosition();
-        this._setMousePosition();
-        this._initCursor();
-        this._setSize();
+        this._resize();
     }
 
     componentWillUnmount() {
@@ -24,56 +22,85 @@ export default class CanvasCustomCursor extends Component {
     }
 
     render() {
-        return <div className={styles.container}>{this.state.onPreloaderCompleted && <canvas ref={this.el} className={styles.canvas} onMouseMove={this._setMousePosition}></canvas>}</div>;
+        return (
+            <div className={styles.wrapper} ref={this.wrapper}>
+                <canvas ref={this.canvas} className={styles.canvas}></canvas>
+            </div>
+        );
+    }
+
+    _setupEventListeners() {
+        resizeManager.addEventListener('resize', this._resizeHandler);
+        resizeManager.addEventListener('resize:complete', this._resizeHandler);
+
+        window.addEventListener('mousemove', this._handleMouseMove);
+    }
+
+    _removeEventListeners() {
+        resizeManager.removeEventListener('resize', this._resizeHandler);
+        resizeManager.removeEventListener('resize:complete', this._resizeHandler);
+
+        window.removeEventListener('mousemove', this._handleMouseMove);
+        gsap.ticker.remove(this._handleTick);
+    }
+
+    _resize() {
+        this._setSize();
+        this._draw();
     }
 
     _setupCanvas() {
-        this._canvas = this.el.current;
-        this._context = this._canvas.getContext('2d');
-        console.log('canvas setup');
+        this.canvas = this.canvas.current;
+        this.context = this.canvas.getContext('2d');
     }
 
-    _initCursor() {
-        this._canvas.addEventListener('mousemove', this._setMousePosition, false);
+    _setSize() {
+        this._width = this.wrapper.current.clientWidth;
+        this._height = this.wrapper.current.clientHeight;
+
+        this.canvas.width = this._width;
+        this.canvas.height = this._height;
+        // console.log(this._width);
     }
 
     _setMousePosition = (e) => {
-        this._clientX = e.clientX;
-        this._clientY = e.clientY;
-        console.log(this._clientX, this._clientY);
+        this._mouseXPosition = e.clientX;
+        this._mouseYPosition = e.clientY;
+        // console.log('some', e.clientX, e.clientY);
+
+        gsap.ticker.add(this._handleTick);
     };
 
-    _setSize() {
-        this._width = window.innerWidth;
-        this._height = window.innerHeight;
-        this._canvas.width = this._width;
-        this._canvas.height = this._height;
-    }
     _renderCursor() {
-        this._context.clearRect(0, 0, this._canvas.width, this._canvas.height);
-        this._context.beginPath();
-        this._context.arc(this._clientX, this._clientY, 20, 0, 2 * Math.PI);
-        this._context.fillStyle = '#000';
-        this._context.fill();
-        console.log('cursor rendered');
+        this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        this.context.beginPath();
+        this.context.arc(this._mouseXPosition, this._mouseYPosition, 5, 0, 2 * Math.PI);
+        this.context.fillStyle = 'red';
+        this.context.fill();
+        this.context.lineWidth = 5;
+        this.context.strokeStyle = '#fff';
+        this.context.stroke();
+        this.context.closePath();
+        // console.log('cursor rendered');
     }
 
-    _getPosition = (el) => {
-        let xPosition = 0;
-        let yPosition = 0;
+    _tick() {
+        this._draw();
+    }
 
-        while (el) {
-            xPosition += el.offsetLeft - el.scrollLeft + el.clientLeft;
-            yPosition += el.offsetTop - el.scrollTop + el.clientTop;
-            el = el.offsetParent;
-        }
-        return {
-            x: xPosition,
-            y: yPosition
-        };
+    _draw() {
+        this._renderCursor();
+    }
+
+    _handleMouseMove = (e) => {
+        this._setMousePosition(e);
     };
 
-    _removeEventListeners() {
-        this._canvas.removeEventListener('mousemove', this._setMousePosition);
-    }
+    _resizeHandler = () => {
+        this._resize();
+    };
+
+    _handleTick = () => {
+        this._tick();
+    };
 }

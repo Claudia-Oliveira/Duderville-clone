@@ -155,7 +155,7 @@ export default class SpritesheetPreloaded extends Component {
         this._setupCanvas();
         this._loadImages();
 
-        console.log(loader.get('image-5'));
+        //console.log(loader.get('image-5'));
     }
 
     componentWillUnmount() {
