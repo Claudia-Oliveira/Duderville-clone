@@ -124,36 +124,25 @@ const FRAMES_DATA = [
     [1, 1, 255, 499, 4, -954, -219]
 ];
 
-// const SPRITES = [
-//     '/assets/img/spritesheet/spritesheet-0.png',
-//     '/assets/img/spritesheet/spritesheet-1.png',
-//     '/assets/img/spritesheet/spritesheet-2.png',
-//     '/assets/img/spritesheet/spritesheet-3.png',
-//     '/assets/img/spritesheet/spritesheet-4.png'
-// ];
-
-//const loaderSprites = loader.resources._resources;
-
-//const loaderSpritesImg = [loader.get('image-5'), loader.get('image-6'), loader.get('image-7'), loader.get('image-8'), loader.get('image-9')];
-
 const FPS_INTERVAL = 1000 / 30;
 
 export default class SpritesheetPreloaded extends Component {
     el = createRef();
 
     state = {
-        index: 0,
-        onPreloaderCompleted: true
+        index: 0
     };
 
-    _images = [];
+    _images = [loader.get('image-5').result, loader.get('image-6').result, loader.get('image-7').result, loader.get('image-8').result, loader.get('image-9').result];
     _now = Date.now();
     _then = Date.now();
     _elapsed = null;
 
     componentDidMount() {
         this._setupCanvas();
-        this._loadImages();
+        this._setupEventListeners();
+
+        // console.log(this._images, this._canvas);
 
         //console.log(loader.get('image-5'));
     }
@@ -163,7 +152,12 @@ export default class SpritesheetPreloaded extends Component {
     }
 
     render() {
-        return <div className={styles.container}>{this.state.onPreloaderCompleted && <canvas ref={this.el} className={styles.canvas} width="1920" height="1080"></canvas>}</div>;
+        return (
+            <div className={styles.container}>
+                {' '}
+                <canvas ref={this.el} className={styles.canvas} width="1920" height="1080"></canvas>
+            </div>
+        );
     }
 
     _setupCanvas() {
@@ -171,24 +165,8 @@ export default class SpritesheetPreloaded extends Component {
         this._context = this._canvas.getContext('2d');
     }
 
-    _loadImages() {
-        this._loaderSpritesImg = [loader.get('image-5'), loader.get('image-6'), loader.get('image-7'), loader.get('image-8'), loader.get('image-9')];
-
-        let imageCount = 0;
-        for (let i = 0; i < this._loaderSpritesImg.length; i++) {
-            const image = new Image();
-            image.src = this._loaderSpritesImg[i].source;
-
-            imageCount++;
-
-            if (imageCount === this._loaderSpritesImg.length) {
-                // ticker is needed to prevent the canvas from freezing when the images are loaded
-                gsap.ticker.add(this._handleTick);
-            }
-
-            // the image is added to the array outside the loop so that it can be accessed later in the ticker
-            this._images.push(image);
-        }
+    _setupEventListeners() {
+        gsap.ticker.add(this._handleTick);
     }
 
     _removeEventListeners() {

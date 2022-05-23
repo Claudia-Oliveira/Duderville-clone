@@ -65,7 +65,7 @@ export default class Preloader extends Component {
     }
 
     _resize() {
-        console.log('resize');
+        // console.log('resize');
         this._setSize();
         this._draw();
     }

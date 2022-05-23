@@ -69,7 +69,7 @@ class Application extends React.Component {
                         <Transition fragment={router.pathname}>
                             <Component {...pageProps} />
                         </Transition>
-                        <CanvasCustomCursor />
+
                         <Footer t={t} router={router.pathname}></Footer>
                     </>
                 )}
@@ -81,6 +81,7 @@ class Application extends React.Component {
                 <Analytics>
                     <GoogleGlobalSiteTag />
                 </Analytics> */}
+                <CanvasCustomCursor />
             </>
         );
     }
